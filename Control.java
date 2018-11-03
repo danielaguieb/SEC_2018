@@ -51,7 +51,8 @@ public class Control {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			int index = view.getComboBoxList().getSelectedIndex();
-			model.getRoute
+			String routeInstructions = model.getRoute(index);
+			view.writeRoute(routeInstructions);
 		}
 		
 	}
