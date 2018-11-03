@@ -154,5 +154,13 @@ public class View extends JFrame{
 		});
 	}
 	
+	public int getComboSelectedIndex() {
+		return route.getSelectedIndex();
+	}
+	
+	public void writeRoute(String routeInstructions) {
+		Info.setText(routeInstructions);
+	}
+	
 	
 }

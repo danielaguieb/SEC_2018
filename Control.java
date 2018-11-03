@@ -12,7 +12,7 @@ public class Control {
 		model = m;
 		view = v;
 		
-//		view.addListeners()
+		view.addListeners(new SubmitListener(), new ListListener());
 		
 //		add as such
 //		theView.addListeners(new SaveListener(), new DeleteListener(),
@@ -50,7 +50,7 @@ public class Control {
 
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
-			int index = view.getComboBoxList().getSelectedIndex();
+			int index = view.getComboSelectedIndex();
 			String routeInstructions = model.getRoute(index);
 			view.writeRoute(routeInstructions);
 		}
