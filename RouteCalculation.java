@@ -19,6 +19,7 @@ public class RouteCalculation{
 		printBusStops();
 		ArrayList<Route> routes = new ArrayList<Route>();
 		ArrayList<Bus> busses = new ArrayList<Bus>();
+		ArrayList<BusStop> busStops = new ArrayList<BusStop>();
 		int size = busstops.size();
 		
 		if (size < 4) {
@@ -26,30 +27,34 @@ public class RouteCalculation{
 				int numpeopletotransport = busstops.get(i).getNumber_of_people();
 				int numbusses = (int) Math.ceil(busstops.get(i).getNumber_of_people() / 50.0);
 				for (int j = 0; j < numbusses-1; j++){
-					int currentbuscapacity = numpeopletotransport - bus_indiv_cap;
-					busses.add(new Bus(bus_indiv_cost, currentbuscapacity, routeID));
+//					int currentbuscapacity = numpeopletotransport - bus_indiv_cap;
+					busses.add(new Bus(bus_indiv_cost, bus_indiv_cap, routeID));
 				}
-				Route route = new Route(numbusses, numbusses*bus_indiv_cap, routeID++, busses);
-				computeCommuteTime(route.getSet_of_bus_stops(), size);
+				ArrayList<BusStop> list_of_stops = new ArrayList<BusStop>();
+				list_of_stops.add(busstops.get(i));
+				Route route = new Route(numbusses, computeCommuteTime(list_of_stops, size), 
+						numbusses*bus_indiv_cap, routeID++, busses, list_of_stops);
 			}
 		}
 		
 		
 	}
 	
-	private int computeCommuteTime(ArrayList<BusStop> busstops, int size)
+	private int computeCommuteTime(ArrayList<BusStop> list_of_stops, int size)
 	{
 		int x_distance = 0, y_distance = 0;
-		for (int i = 0; i < size; i++) {
-			x_distance += Math.abs(busstops.get(i).getThe_stop().i - busstops.get(i).getDestination().i);
-			y_distance += Math.abs(busstops.get(i).getThe_stop().j - busstops.get(i).getDestination().j);
+		System.out.println("the size is " + list_of_stops.size());
+		for (int k = 0; k < size; k++) {
+			x_distance += Math.abs(list_of_stops.get(k).getThe_stop().i - list_of_stops.get(k).getDestination().i);
+			y_distance += Math.abs(list_of_stops.get(k).getThe_stop().j - list_of_stops.get(k).getDestination().j);
 		}
+		return x_distance + y_distance;
 	}
 	
 	private void printBusStops()
 	{
 		for (int i = 0; i < busstops.size(); i++) {
-			System.out.println(busstops.get(i).getStop().i + "," + busstops.get(i).getStop().j);
+			System.out.println(busstops.get(i).getThe_stop().i + "," + busstops.get(i).getThe_stop().j);
 			System.out.println("Number of people: " + busstops.get(i).getNumber_of_people());
 			System.out.println(busstops.get(i).getDestination().i + "," + busstops.get(i).getDestination().j);
 		}
