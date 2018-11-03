@@ -1,19 +1,19 @@
 
 
 public class BusStop {
-	private Location stop;
+	private Location the_stop;
 	private Location destination;
 	private int number_of_people;
 	
-	public BusStop(Location stop, Location destination, int numpeople)
+	public BusStop(Location the_stop, Location destination, int numpeople)
 	{
-		this.stop = stop;
+		this.the_stop = the_stop;
 		this.destination = destination;
 		number_of_people = numpeople;
 	}
 
-	public void setStop(Location stop) {
-		this.stop = stop;
+	public void setStop(Location the_stop) {
+		this.the_stop = the_stop;
 	}
 	
 	public Location getDestination() {
@@ -32,8 +32,8 @@ public class BusStop {
 		this.number_of_people = number_of_people;
 	}
 
-	public Location getStop() {
-		return stop;
+	public Location getThe_stop() {
+		return the_stop;
 	}
 
 }
