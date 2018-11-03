@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class RouteCalculation{
 	private ArrayList<BusStop> busstops;
@@ -30,13 +31,50 @@ public class RouteCalculation{
 //					int currentbuscapacity = numpeopletotransport - bus_indiv_cap;
 					busses.add(new Bus(bus_indiv_cost, bus_indiv_cap, routeID));
 				}
-				ArrayList<BusStop> list_of_stops = new ArrayList<BusStop>();
-				list_of_stops.add(busstops.get(i));
-				Route route = new Route(numbusses, computeCommuteTime(list_of_stops, size), 
-						numbusses*bus_indiv_cap, routeID++, busses, list_of_stops);
+				busStops.add(busstops.get(i));
+				Route route = new Route(numbusses, computeCommuteTime(busStops, size), 
+						numbusses*bus_indiv_cap, routeID++, busses, busStops);
 			}
 		}
 		
+		else {
+			Vector<Location> dest_vector = new Vector<Location>();
+			Vector<Location> dropoff_to_pickup = new Vector<Location>();
+			for (int i = 0; i < size; i++) {
+				int x_dist_dest = Math.abs(busstops.get(i).getThe_stop().i - busstops.get(i).getThe_stop().i);
+				int y_dist_dest = Math.abs(busstops.get(i).getThe_stop().j - busstops.get(i).getThe_stop().j);
+				dest_vector.add(new Location(x_dist_dest, y_dist_dest));
+				
+				for (int j = 0; j < size; j++) {
+					if (j != i) {
+						int x_dist_dtp = Math.abs(busstops.get(i).getDestination().i - busstops.get(j).getThe_stop().i);
+						int y_dist_dtp = Math.abs(busstops.get(i).getDestination().j - busstops.get(j).getThe_stop().j);
+						dropoff_to_pickup.add(new Location(x_dist_dtp, y_dist_dtp));
+					}
+				}
+			}
+			
+			int minnumpickups = size / 3;
+			int remainingminpickups = size % 3;
+			
+			Location smallestlocation = busstops.get(0).getThe_stop();
+			
+			for (int i = 0; i < minnumpickups - 1; i++) {
+				//get the shortest part
+				int min = 1000000;
+				for (int j = 0; j < size - 1; j++) {
+					int x = busstops.get(smallestlocation.i).getDestination().i - busstops.get(j).getDestination().i;
+					int y = busstops.get(smallestlocation.i).getDestination().j - busstops.get(j).getDestination().j;
+					int total = x + y;
+					if (total < min) {
+						min = total;
+						smallestlocation.i = busstops.get(j).getDestination().i;
+						smallestlocation.j = busstops.get(j).getDestination().j;
+					}
+				}
+				
+			}
+		}
 		
 	}
 	
