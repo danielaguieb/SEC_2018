@@ -26,7 +26,7 @@ public class Demo
         	readline=reader.readLine();
         }
         
-        RouteCalculation routeCalculation = new RouteCalculation(busStops);
+        RouteCalculation routeCalculation = new RouteCalculation(busStops, 50, 100);
         routeCalculation.calculateRoute();
 	}
 	

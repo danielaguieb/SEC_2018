@@ -9,6 +9,13 @@ public class Route
 	private ArrayList<BusStop> set_of_bus_stops;
 	private ArrayList<Bus> set_of_busses;
 	
+	public Route(int deployed_busses, int totalcost, int routeID)
+	{
+		this.deployed_buses = deployed_busses;
+		cost = totalcost;
+		this.routeID = routeID;
+	}
+	
 	public int getDeployed_buses() {
 		return deployed_buses;
 	}
