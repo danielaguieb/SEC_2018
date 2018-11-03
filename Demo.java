@@ -18,10 +18,13 @@ public class Demo
             String[] pickupcoors = txtinfo[0].split(",");
             String[] destcoors = txtinfo[2].split(",");
             Location pickup = new Location(pickupcoors[0], pickupcoors[1]);
-            BusStop busStop = BusStop(pickupcoors, destcoors, Integer.parseInt(txtinfo[1]));
+            Location dest = new Location(destcoors[0], destcoors[1]);
+            BusStop busStop = new BusStop(pickup, dest, Integer.parseInt(txtinfo[1]));
         	readline=reader.readLine();
         }
         
 	}
 	
 }
+
+//darnibba can you read
