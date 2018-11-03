@@ -4,7 +4,7 @@ public class RouteCalculation{
 	private ArrayList<BusStop> busstops;
 	static int routeID = 0;
 	private int bus_indiv_cap;
-	private int bus_indiv_cost;
+	private double bus_indiv_cost;
 	//size of bus = 50v
 	//cost of the bus = 100
 	public RouteCalculation(ArrayList<BusStop> busstops, int bus_indiv_cap, int bus_indiv_cost)
@@ -27,8 +27,10 @@ public class RouteCalculation{
 				int numbusses = (int) Math.ceil(busstops.get(i).getNumber_of_people() / 50.0);
 				for (int j = 0; j < numbusses-1; j++){
 					int currentbuscapacity = numpeopletotransport - bus_indiv_cap;
+					busses.add(new Bus(bus_indiv_cost, currentbuscapacity, routeID));
 				}
-				routes.add(new Route(numbusses, numbusses*100, ++routeID));
+				
+				routes.add(new Route(numbusses, numbusses*bus_indiv_cap, routeID++, busses));
 			}
 		}
 		
