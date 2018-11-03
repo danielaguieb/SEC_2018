@@ -13,13 +13,6 @@ public class Control {
 		view = v;
 		
 		view.addListeners(new SubmitListener(), new ListListener());
-		
-//		add as such
-//		theView.addListeners(new SaveListener(), new DeleteListener(),
-//				new ClearListener(), new clientIDBListener(), new lastBListener(),
-//				new typeBListener(), new SearchListener(), new ClearSearchListener(),
-//				new ListListener());
-		
 	}
 	
 	private int validateInt(String s) {
@@ -46,15 +39,14 @@ public class Control {
 		}
 	}
 	
-	public class ListListener implements ListSelectionListener {
+	public class ListListener implements ActionListener {
 
 		@Override
-		public void valueChanged(ListSelectionEvent e) {
+		public void actionPerformed(ActionEvent e) {
 			int index = view.getComboSelectedIndex();
 			String routeInstructions = model.getRoute(index);
 			view.writeRoute(routeInstructions);
 		}
-		
 	}
 	
 	

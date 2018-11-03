@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +22,9 @@ public class View extends JFrame{
 	JButton submit;
 	JComboBox route;
 	
+	String total_busses_deployed = "";
+	String total_cost = "";
+	String total_commute_time = "";
 	
 	
 	
@@ -54,15 +58,15 @@ public class View extends JFrame{
 		c.anchor = GridBagConstraints.LINE_START;
 		c.gridx=0;
 		
-		BussesDeployed = new JLabel("Total Busses Deployed");
+		BussesDeployed = new JLabel("Total Busses Deployed " + total_busses_deployed);
 		totalPanel.add(BussesDeployed);
 		c.gridx++;
 		
-		Cost = new JLabel("Total Cost");
+		Cost = new JLabel("Total Cost " + total_cost);
 		totalPanel.add(Cost);
 		c.gridx++;
 		
-		CommuteTime = new JLabel("Total Commute Time");
+		CommuteTime = new JLabel("Total Commute Time " + total_commute_time);
 		totalPanel.add(CommuteTime);
 		c.gridx=0;
 		
@@ -98,7 +102,8 @@ public class View extends JFrame{
 		JPanel routeSelect = new JPanel(new GridLayout(1,2));
 		routeInfoPanel.add(routeSelect,BorderLayout.NORTH);
 		
-		route = new JComboBox();
+		String[] comboValues = { "Route 1", "Route 2", "Route 3" };
+		route = new JComboBox(comboValues);
 		routeSelect.add(route);
 		
 		JPanel bussesPanel = new JPanel();
@@ -160,6 +165,16 @@ public class View extends JFrame{
 	
 	public void writeRoute(String routeInstructions) {
 		Info.setText(routeInstructions);
+	}
+	public void writeTotalValues(int[] total_values) {
+		total_busses_deployed = ""+ total_values[0];
+		total_cost = ""+ total_values[1];
+		total_commute_time = ""+ total_values[2];
+	}
+	public void addListeners(ActionListener submitListener, ActionListener listListener) {
+		submit.addActionListener(submitListener);
+		route.addActionListener(listListener);
+		
 	}
 	
 	
