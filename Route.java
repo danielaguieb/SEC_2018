@@ -4,7 +4,7 @@ public class Route
 {
 	private int deployed_buses;
 	private int cost;
-	private int total_commute_time;
+	private int commute_time;
 	private int routeID;
 	private ArrayList<BusStop> set_of_bus_stops;
 	private ArrayList<Bus> set_of_busses;
@@ -21,11 +21,11 @@ public class Route
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
-	public int getTotal_commute_time() {
-		return total_commute_time;
+	public int getCommute_time() {
+		return commute_time;
 	}
-	public void setTotal_commute_time(int total_commute_time) {
-		this.total_commute_time = total_commute_time;
+	public void setCommute_time(int commute_time) {
+		this.commute_time = commute_time;
 	}
 	public int getRouteID() {
 		return routeID;
