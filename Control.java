@@ -12,14 +12,7 @@ public class Control {
 		model = m;
 		view = v;
 		
-//		view.addListeners()
-		
-//		add as such
-//		theView.addListeners(new SaveListener(), new DeleteListener(),
-//				new ClearListener(), new clientIDBListener(), new lastBListener(),
-//				new typeBListener(), new SearchListener(), new ClearSearchListener(),
-//				new ListListener());
-		
+		view.addListeners(new SubmitListener(), new ListListener());
 	}
 	
 	private int validateInt(String s) {
@@ -37,7 +30,6 @@ public class Control {
 	public class SubmitListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO fixing these functions
 			String bus_cost = view.getNewBusCost();
 			String bus_cap = view.getNewBusCap();
 			model.updateRoutes(bus_cost, bus_cap);
@@ -46,15 +38,14 @@ public class Control {
 		}
 	}
 	
-	public class ListListener implements ListSelectionListener {
+	public class ListListener implements ActionListener {
 
 		@Override
-		public void valueChanged(ListSelectionEvent e) {
-			int index = view.getComboBoxList().getSelectedIndex();
+		public void actionPerformed(ActionEvent e) {
+			int index = view.getComboSelectedIndex();
 			String routeInstructions = model.getRoute(index);
 			view.writeRoute(routeInstructions);
 		}
-		
 	}
 	
 	
