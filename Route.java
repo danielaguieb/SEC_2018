@@ -8,5 +8,5 @@ public class Route
 	private int routeID;
 	private ArrayList<BusStop> set_of_bus_stops;
 	private ArrayList<Bus> set_of_busses;
-	
+	 
 }
