@@ -51,6 +51,7 @@ public class View extends JFrame{
 		total = new JLabel("Total");
 		totalPanel.add(total,BorderLayout.WEST);
 		
+		
 		JPanel totalInfoPanel = new JPanel(new BorderLayout());
 		totalPanel.add(totalInfoPanel,BorderLayout.EAST);
 		
@@ -68,20 +69,20 @@ public class View extends JFrame{
 		JPanel busCost = new JPanel(new BorderLayout());
 		busInfoPanel.add(busCost,BorderLayout.WEST);
 		
-		BusCostLabel = new JLabel();
+		BusCostLabel = new JLabel("Bus Cost");
 		busCost.add(BusCostLabel, BorderLayout.WEST);
-		BusCostEntry = new JTextField();
+		BusCostEntry = new JTextField(7);
 		busCost.add(BusCostEntry, BorderLayout.EAST);
 		
 		JPanel busCap = new JPanel(new BorderLayout());
 		busInfoPanel.add(busCap,BorderLayout.CENTER);
 		
-		BusCapLabel = new JLabel();
+		BusCapLabel = new JLabel("Bus Capacity");
 		busCap.add(BusCapLabel, BorderLayout.WEST);
-		BusCapEntry = new JTextField();
+		BusCapEntry = new JTextField(7);
 		busCap.add(BusCapEntry, BorderLayout.EAST);
 		
-		submit = new JButton();
+		submit = new JButton("Submit");
 		busInfoPanel.add(submit, BorderLayout.EAST);
 		
 		
