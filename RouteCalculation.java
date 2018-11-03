@@ -29,14 +29,21 @@ public class RouteCalculation{
 					int currentbuscapacity = numpeopletotransport - bus_indiv_cap;
 					busses.add(new Bus(bus_indiv_cost, currentbuscapacity, routeID));
 				}
-				
-				routes.add(new Route(numbusses, numbusses*bus_indiv_cap, routeID++, busses));
+				Route route = new Route(numbusses, numbusses*bus_indiv_cap, routeID++, busses);
+				computeCommuteTime(route.getSet_of_bus_stops(), size);
 			}
 		}
 		
 		
-		
-		
+	}
+	
+	private int computeCommuteTime(ArrayList<BusStop> busstops, int size)
+	{
+		int x_distance = 0, y_distance = 0;
+		for (int i = 0; i < size; i++) {
+			x_distance += Math.abs(busstops.get(i).getThe_stop().i - busstops.get(i).getDestination().i);
+			y_distance += Math.abs(busstops.get(i).getThe_stop().j - busstops.get(i).getDestination().j);
+		}
 	}
 	
 	private void printBusStops()
