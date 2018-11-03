@@ -1,7 +1,7 @@
 
 
 public class BusStop {
-	private Location pickup;
+	private Location stop;
 	private Location destination;
 	private int number_of_people;
 	
