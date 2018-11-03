@@ -30,7 +30,6 @@ public class Control {
 	public class SubmitListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO fixing these functions
 			String bus_cost = view.getNewBusCost();
 			String bus_cap = view.getNewBusCap();
 			model.updateRoutes(bus_cost, bus_cap);
